@@ -1,0 +1,20 @@
+name: Deploy on ArgoCD
+
+on: 
+    push: 
+        branches: 
+            - main
+
+jobs:
+    deploy-on-argocd: 
+        uses: ./.github/workflows/argocd.yml
+        with: 
+            repo: https://github.com/my-org/my-repo.git
+            path: path/to/application
+            dest-server: https://kubernetes.default.svc
+            dest-namespace: default
+            revision: main
+        secrets:
+            ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+            ARGOCD_USERNAME: ${{ secrets.ARGOCD_USERNAME }}
+            ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}

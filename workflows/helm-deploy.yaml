@@ -1,0 +1,15 @@
+name: helm deploy
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    update-helm-values-yaml:
+        uses: ./.github/workflows/helm-update-values.yml
+        with:
+            helm_chart_name: nodeapp
+        secrets:
+            git_user_name: ${{ secrets.git_user_name }}
+            git_user_email: ${{ secrets.git_user_email }}
