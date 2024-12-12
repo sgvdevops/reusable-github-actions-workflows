@@ -1,23 +1,23 @@
-name: CD
+# name: CD
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
       
-jobs:
-  build-and-deploy:
-    uses: ./.github/workflows/docker-build-push.yml
-    with:
-      image_name: node-app
-    secrets:
-      dockerhub_username: ${{ secrets.DOCKER_USERNAME }}
-      dockerhub_key: ${{ secrets.DOCKER_KEY }}
+# jobs:
+#   build-and-deploy:
+#     uses: ./.github/workflows/docker-build-push.yml
+#     with:
+#       image_name: node-app
+#     secrets:
+#       dockerhub_username: ${{ secrets.DOCKER_USERNAME }}
+#       dockerhub_key: ${{ secrets.DOCKER_KEY }}
   
-  update-helm-values-yaml:
-    uses: ./.github/workflows/helm-update-values.yml
-    with:
-      helm_chart_name: nodeapp
-    secrets:
-      git_user_name: ${{ secrets.git_user_name }}
-      git_user_email: ${{ secrets.git_user_email }}
+#   update-helm-values-yaml:
+#     uses: ./.github/workflows/helm-update-values.yml
+#     with:
+#       helm_chart_name: nodeapp
+#     secrets:
+#       git_user_name: ${{ secrets.git_user_name }}
+#       git_user_email: ${{ secrets.git_user_email }}
