@@ -5,13 +5,12 @@ on:
     branches:
       - main
 
-env:
-  IMAGE_NAME: node-app
 
 jobs:
   build-and-deploy:
     uses: ./.github/workflows/docker-build-push.yml
     with:
+      image_name: node-app
+    secrets:
       dockerhub_username: ${{ secrets.DOCKER_USERNAME }}
       dockerhub_key: ${{ secrets.DOCKER_KEY }}
-      image_name: ${{ env.IMAGE_NAME }}
