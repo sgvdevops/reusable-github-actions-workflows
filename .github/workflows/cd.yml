@@ -1,0 +1,19 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
+  IMAGE_NAME: node-app
+
+jobs:
+  build-and-deploy:
+    uses: ./.github/workflows/docker-build-push.yml
+    with:
+      dockerhub_username: ${{ env.DOCKERHUB_USERNAME }}
+      dockerhub_key: ${{ env.DOCKERHUB_KEY }}
+      image_name: ${{ env.IMAGE_NAME }}
